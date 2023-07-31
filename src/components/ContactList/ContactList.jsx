@@ -10,13 +10,16 @@ const ContactList = () => {
   const handleDeleteContact = id => {
     dispatch(deleteContact(id));
   };
-    const filteredContacts = contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filter.toLowerCase())
-    );
+  const filteredContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
 
+  if (filteredContacts.length === 0 && filter) {
+    return <p>No such contacts</p>;
+  }
   return (
     <ContList>
-       {filteredContacts.map(contact => (
+      {filteredContacts.map(contact => (
         <ContItem key={contact.id}>
           {contact.name}: {contact.number}
           <ContButton onClick={() => handleDeleteContact(contact.id)}>

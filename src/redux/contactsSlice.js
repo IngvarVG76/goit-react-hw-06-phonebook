@@ -22,7 +22,7 @@ const contactsSlice = createSlice({
       );
 
       if (isDuplicateName) {
-        alert('This name is already in contacts!');
+          alert('This name is already in contacts!');
         return;
       }
 

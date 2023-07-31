@@ -1,27 +1,28 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+
 import { Form, FormLabel, FormInput, FormBtn } from './ContactForm.styled';
+import { addContact } from 'redux/contactsSlice';
 
-const ContactForm = ({ onAddContact }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    number: '',
-  });
-
-  const handleChange = event => {
-    setFormData(prevState => ({
-      ...prevState,
-      [event.target.name]: event.target.value,
-    }));
-  };
+const ContactForm = () => {
+  const dispatch = useDispatch();
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
 
   const handleSubmit = event => {
     event.preventDefault();
-    onAddContact(formData);
-    setFormData({ name: '', number: '' });
+    dispatch(addContact({ name, number }));
+    setName(''); 
+    setNumber(''); 
   };
 
-  const { name, number } = formData;
+  const handleNameChange = event => {
+    setName(event.target.value);
+  };
+
+  const handleNumberChange = event => {
+    setNumber(event.target.value);
+  };
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -33,7 +34,7 @@ const ContactForm = ({ onAddContact }) => {
         placeholder="Enter name"
         required
         value={name}
-        onChange={handleChange}
+        onChange={handleNameChange}
       />
 
       <FormLabel htmlFor="number">Number:</FormLabel>
@@ -44,16 +45,12 @@ const ContactForm = ({ onAddContact }) => {
         placeholder="Enter number"
         required
         value={number}
-        onChange={handleChange}
+        onChange={handleNumberChange}
       />
 
       <FormBtn type="submit">Add Contact</FormBtn>
     </Form>
   );
-};
-
-ContactForm.propTypes = {
-  onAddContact: PropTypes.func.isRequired,
 };
 
 export default ContactForm;

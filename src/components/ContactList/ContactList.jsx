@@ -15,8 +15,9 @@ const ContactList = () => {
   );
 
   if (filteredContacts.length === 0 && filter) {
-    return <p>No such contacts</p>;
+    return <p>No such name</p>;
   }
+
   return (
     <ContList>
       {filteredContacts.map(contact => (

@@ -12,6 +12,7 @@ export const ContItem = styled.li`
   padding: ${props => props.theme.spacing(2)};
   border: 1px solid ${props => props.theme.colors.gray};
   border-radius: 4px;
+  text-transform: capitalize;
 `;
 
 export const ContButton = styled.button`

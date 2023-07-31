@@ -15,6 +15,7 @@ const ContactForm = () => {
     setName(''); 
     setNumber(''); 
   };
+  
 
   const handleNameChange = event => {
     setName(event.target.value);
@@ -40,9 +41,10 @@ const ContactForm = () => {
       <FormLabel htmlFor="number">Number:</FormLabel>
       <FormInput
         type="tel"
+        pattern="[0-9]{3}-[0-9]{2}-[0-9]{2}"
         id="number"
         name="number"
-        placeholder="Enter number"
+        placeholder="Enter number 000-00-00"
         required
         value={number}
         onChange={handleNumberChange}
